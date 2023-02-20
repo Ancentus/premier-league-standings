@@ -22,10 +22,11 @@ standings = pd.DataFrame({
     'GD': 0,
     'Pts': 0
 })
+
 standings = standings.set_index('Team')
 
 # Create Streamlit app
-st.title('Premier League Standings Simulation')
+st.title('Premier League Standings')
 st.subheader('2021-2022 Season')
 
 # creating a single-element container
@@ -86,8 +87,13 @@ for date in pd.date_range(start=start_date, end=end_date):
 
         # Sort standings table and display
         standings = standings.sort_values(by=['Pts', 'GD', 'GF'], ascending=[False, False, False])
+
+        # Add 'Pos' column
+        standings = standings.reset_index()
+        standings.index += 1
         
         st.write('##', date.strftime('%A, %B %d, %Y'))
         st.dataframe(standings)
+        standings = standings.set_index('Team')
         time.sleep(1)
 
