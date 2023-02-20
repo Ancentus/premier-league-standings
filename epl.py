@@ -93,7 +93,8 @@ for date in pd.date_range(start=start_date, end=end_date):
         standings.index += 1
         
         st.write('##', date.strftime('%A, %B %d, %Y'))
-        st.dataframe(standings)
+        ht = (20 + 1) * 35 + 3
+        st.dataframe(standings, height=ht, width=800)
         standings = standings.set_index('Team')
         time.sleep(1)
 
