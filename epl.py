@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import time
 
-# Read data for the 2021-2022 season
+# Read data for the all seasons
 df = pd.read_csv('eplmatches.csv')
 
 # Get list of seasons
