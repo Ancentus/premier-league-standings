@@ -2,6 +2,8 @@
 
 This is a Streamlit app that visualizes the standings of the English Premier League for a given season.
 
+https://epl-standings.streamlit.app/
+
 ## Getting Started
 
 1. Clone this repository to your local machine.
