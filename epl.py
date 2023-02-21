@@ -4,7 +4,16 @@ import time
 
 # Read data for the 2021-2022 season
 df = pd.read_csv('eplmatches.csv')
-season_df = df[df['Season_End_Year'] == 2022]
+
+# Get list of seasons
+seasons = df['Season_End_Year'].unique()
+seasons.sort()
+
+# Let the user select the season
+selected_season = st.sidebar.selectbox('Select season end year', seasons)
+
+# Filter the data for the selected season
+season_df = df[df['Season_End_Year'] == selected_season]
 
 # Get list of teams
 teams = season_df['Home'].unique()
