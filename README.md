@@ -1,2 +1,2 @@
 # premier-league-standings
-Visualization of premier league standings with streamlit
+Time Lapse Visualization of premier league standings with streamlit
