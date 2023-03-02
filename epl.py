@@ -111,6 +111,9 @@ for date in pd.date_range(start=start_date, end=end_date):
         # Display standings table in second column
         ht = (20 + 1) * 35 + 3
 
+        # sort by index for correct displaying in bar chart
+        standings = standings.sort_index(ascending=False)
+
         # Create bar chart
         fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100])
 
