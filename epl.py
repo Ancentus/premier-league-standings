@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import time
+import plotly.express as px
 
 # Read data for the all seasons
 df = pd.read_csv('eplmatches.csv')
@@ -108,9 +109,16 @@ for date in pd.date_range(start=start_date, end=end_date):
         col1.write(date.strftime('%A, %B %d, %Y'))
 
         # Display standings table in second column
-
         ht = (20 + 1) * 35 + 3
-        col2.dataframe(standings, height=ht)
+
+        # Create bar chart
+        fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100])
+
+        # Set chart title and axis labels
+        fig.update_layout(title=date.strftime('%A, %B %d, %Y'), xaxis_title="Points", yaxis_title="Team")
+
+        # Display chart in second column
+        col2.plotly_chart(fig)
         standings = standings.set_index('Team')
         time.sleep(1)
 
