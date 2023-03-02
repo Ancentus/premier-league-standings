@@ -36,8 +36,8 @@ standings = pd.DataFrame({
 standings = standings.set_index('Team')
 
 # Create Streamlit app
-st.title('Premier League Standings')
-st.subheader('2021-2022 Season')
+st.title('Premier League Race')
+st.subheader(selected_season)
 
 # creating a single-element container
 placeholder = st.empty()
@@ -167,12 +167,33 @@ for date in pd.date_range(start=start_date, end=end_date):
             "Wimbledon": "#005E2C"
         }
 
+        # define axis labels
+        axis_labels = {
+            'Team': "",
+            'Pts': ""
+        }
+
 
         # Create bar chart
-        fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100], color='Team', color_discrete_map=teams_colors)
+        fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100], color='Team', color_discrete_map=teams_colors, text='Pts', labels=axis_labels)
+
+        # Supported fonts
+        # "Arial", "Balto", "Courier New", "Droid Sans",, "Droid Serif", "Droid Sans Mono", 
+        # "Gravitas One", "Old Standard TT", "Open Sans", "Overpass", "PT Sans Narrow", "Raleway", "Times New Roman".
 
         # Set chart title and axis labels
-        fig.update_layout(title=date.strftime('%A, %B %d, %Y'), xaxis_title="Points", yaxis_title="Team")
+        fig.update_layout(title=date.strftime('%A, %B %d, %Y'), showlegend=False, xaxis = dict(
+              showticklabels = True
+           ),
+            yaxis = dict(
+              showticklabels = True,
+              tickfont = dict(
+              family = 'Courier New, serif',
+              size = 18,
+              color = 'black'
+              )
+           )
+        )
 
         # Display chart in second column
         col2.plotly_chart(fig)
