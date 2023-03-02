@@ -112,10 +112,36 @@ for date in pd.date_range(start=start_date, end=end_date):
         ht = (20 + 1) * 35 + 3
 
         # sort by index for correct displaying in bar chart
-        standings = standings.sort_index(ascending=False)
+        standings = standings.sort_index(ascending=True)
+
+        # define team colors
+        teams_colors = {
+            "Arsenal": "#EF0107",
+            "Aston Villa": "#95BFE5",
+            "Brentford": "#FEE12B",
+            "Brighton": "#0057B8",
+            "Burnley": "#6C1D45",
+            "Chelsea": "#034694",
+            "Crystal Palace": "#1B458F",
+            "Everton": "#003399",
+            "Leeds United": "#FFCD00",
+            "Leicester City": "#0053A0",
+            "Liverpool": "#C8102E",
+            "Manchester City": "#6CABDD",
+            "Manchester Utd": "#DA291C",
+            "Newcastle Utd": "#241F20",
+            "Norwich City": "#00A14E",
+            "Southampton": "#D71920",
+            "Tottenham": "#132257",
+            "Watford": "#FBEE23",
+            "West Ham United": "#7A263A",
+            "Wolves": "#FDB913",
+            "Wolvess": "#FDB913"
+        }
+
 
         # Create bar chart
-        fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100])
+        fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100], color='Team', color_discrete_map=teams_colors)
 
         # Set chart title and axis labels
         fig.update_layout(title=date.strftime('%A, %B %d, %Y'), xaxis_title="Points", yaxis_title="Team")
