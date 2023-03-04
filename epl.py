@@ -175,7 +175,7 @@ for date in pd.date_range(start=start_date, end=end_date):
 
 
         # Create bar chart
-        fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100], color='Team', color_discrete_map=teams_colors, text='Pts', labels=axis_labels)
+        fig = px.bar(standings, x='Pts', y='Team', orientation='h', height=ht, range_x=[0,100], color='Team', color_discrete_map=teams_colors, labels=axis_labels, text='Pts')
 
         # Supported fonts
         # "Arial", "Balto", "Courier New", "Droid Sans",, "Droid Serif", "Droid Sans Mono", 
@@ -183,17 +183,28 @@ for date in pd.date_range(start=start_date, end=end_date):
 
         # Set chart title and axis labels
         fig.update_layout(title=date.strftime('%A, %B %d, %Y'), showlegend=False, xaxis = dict(
-              showticklabels = True
-           ),
-            yaxis = dict(
               showticklabels = True,
+                showline = True,
               tickfont = dict(
               family = 'Courier New, serif',
               size = 18,
               color = 'black'
               )
-           )
+           ),
+            yaxis = dict(
+              showticklabels = True,
+              tickfont = dict(
+              family = 'Courier New, serif',
+              size = 21,
+              color = 'black'
+              )
+           ),
+            font = dict(
+                color='purple',
+                size = 21,
+            )
         )
+        fig.update_traces(textposition='outside')
 
         # Display chart in second column
         col2.plotly_chart(fig)
